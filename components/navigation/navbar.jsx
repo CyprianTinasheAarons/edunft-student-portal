@@ -1,16 +1,18 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
+import { useDisconnect } from "wagmi";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const navigation = [{ name: "Dashboard", href: "#", current: true }];
+const navigation = [{}];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
+  const { disconnect } = useDisconnect();
+
   return (
     <Disclosure as="nav">
       {({ open }) => (
@@ -28,11 +30,11 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
+              <div className="flex items-center justify-center flex-1 mt-4 sm:items-stretch sm:justify-start sm:mt-0">
                 <div className="flex items-center flex-shrink-0">
-                  <h1 className="text-xl font-bold">
+                  <a href="/" className="text-xl font-bold">
                     EDU NFT | Student Portal
-                  </h1>
+                  </a>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -54,7 +56,7 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 items-center hidden pr-2 sm:flex sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative mx-3">
                   <div>
@@ -87,15 +89,15 @@ export default function Navbar() {
                     <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <button
+                            onClick={() => disconnect()}
                             className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
+                              active ? "bg-gray-100 w-full" : "",
+                              "block px-4 py-2 text-sm text-gray-700 w-full"
                             )}
                           >
                             Sign out
-                          </a>
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>
@@ -125,6 +127,9 @@ export default function Navbar() {
                   {item.name}
                 </Disclosure.Button>
               ))}
+              <div className="flex justify-center my-2">
+                <ConnectButton></ConnectButton>
+              </div>
             </div>
           </Disclosure.Panel>
         </>

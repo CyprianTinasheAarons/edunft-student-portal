@@ -67,9 +67,10 @@ export default function NFTGallery({}) {
                 }}
                 defaultValue={process.env.ALCHEMY_NETWORK}
               >
+                {" "}
+                <option value={"ETH_GOERLI"}>Goerli</option>
                 <option value={"ETH_MAINNET"}>Mainnet</option>
                 <option value={"MATIC_MAINNET"}>Polygon</option>
-                <option value={"ETH_GOERLI"}>Goerli</option>
                 <option value={"MATIC_MUMBAI"}>Mumbai</option>
               </select>
             </div>
