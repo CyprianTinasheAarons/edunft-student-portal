@@ -32,8 +32,13 @@ export default function Navbar() {
               </div>
               <div className="flex items-center justify-center flex-1 mt-4 sm:items-stretch sm:justify-start sm:mt-0">
                 <div className="flex items-center flex-shrink-0">
-                  <a href="/" className="text-xl font-bold">
-                    EDU NFT | Student Portal
+                  <img
+                    className="block w-auto h-8"
+                    src="/logo.png"
+                    alt="Workflow"
+                  />
+                  <a href="/" className="px-2 text-xl font-bold uppercase">
+                 | Student Portal
                   </a>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">

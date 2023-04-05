@@ -6,10 +6,10 @@ export default function MainLayout({ children }) {
       <Navbar />
       {children}
       <footer className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+        <div className="px-6 py-12 mx-auto max-w-7xl md:flex md:items-center md:justify-between lg:px-8">
           <div className="mt-8 md:order-1 md:mt-0">
-            <p className="text-center text-xs leading-5 text-black">
-              &copy; 2023 EDUNFT, Inc. All rights reserved.d
+            <p className="text-xs leading-5 text-center text-black">
+              &copy; 2023 EDUNFT, Inc. All rights reserved.
             </p>
           </div>
         </div>
