@@ -51,7 +51,8 @@ export default async function handler(req, res) {
     res.status(200).json({
       nfts: formattedNfts.length
         ? formattedNfts.filter(
-            (nft) => nft.contract == 0xa4ebc7da77088e2f2f684c89695f76a3d6ce0e31
+            (nft) =>
+              nft.contract == "0xa4ebc7Da77088e2F2f684C89695F76a3d6Ce0E31"
           )
         : null,
       pageKey: nfts.pageKey,
