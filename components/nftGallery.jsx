@@ -56,7 +56,7 @@ export default function NFTGallery({}) {
     <div className={styles.nft_gallery_page}>
       <div>
         <div className={styles.fetch_selector_container}>
-          <h2 style={{ fontSize: "20px" }}>Student Awards & Certificates</h2>
+          <h2  className="text-white" style={{ fontSize: "20px" }}>Student Awards & Certificates</h2>
         </div>
         <div className={styles.inputs_container}>
           <div className={styles.input_button_container}>
@@ -94,7 +94,7 @@ export default function NFTGallery({}) {
               })
             ) : (
               <div className={styles.loading_box}>
-                <p>No NFTs found for the selected address</p>
+                <p className="text-white">No NFTs found for the selected address</p>
               </div>
             )}
           </div>

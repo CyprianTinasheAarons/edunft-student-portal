@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import store from ".././store";
+import { Provider } from "react-redux";
+import {useState, useEffect} from "react";
 
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
@@ -44,6 +47,12 @@ const wagmiClient = createClient({
 
 export { WagmiConfig, RainbowKitProvider };
 function MyApp({ Component, pageProps }) {
+ const [hydration, setHydration] = useState(false);
+
+  useEffect(() => {
+    setHydration(true);
+  }, []);
+  
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
@@ -52,9 +61,11 @@ function MyApp({ Component, pageProps }) {
         chains={chains}
       >
         {" "}
-        <ChakraProvider>
+<Provider store={store}>
+          <ChakraProvider>
           <Component {...pageProps} />
         </ChakraProvider>
+        </Provider>
       </RainbowKitProvider>
     </WagmiConfig>
   );

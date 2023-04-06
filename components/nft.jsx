@@ -4,7 +4,7 @@ export default function NFT({ nft }) {
   return (
     <div className="bg-white">
       <div className="max-w-2xl px-2 py-4 mx-auto sm:py-4 lg:max-w-7xl ">
-        <div className="lg:grid lg:grid-cols-2 lg:items-start ">
+        <div className="p-2 lg:grid lg:grid-cols-2 lg:items-start">
           {/* Image gallery */}
 
           <div className="mr-4">
@@ -39,11 +39,11 @@ export default function NFT({ nft }) {
               })
               .map((attribute, index) => {
                 return (
-                  <div className="mt-1" key={index}>
+                  <div className="mt-1 " key={index}>
                     <h3 className="sr-only">{attribute.trait_type}</h3>
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col ">
                       <div
-                        className="text-xs text-gray-700"
+                        className="text-sm font-semibold text-left text-gray-700"
                         dangerouslySetInnerHTML={{
                           __html: attribute.trait_type,
                         }}

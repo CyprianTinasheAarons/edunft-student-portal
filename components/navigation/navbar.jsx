@@ -1,8 +1,10 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useDisconnect } from "wagmi";
-import { Fragment } from "react";
+import { useEffect, useState, Fragment} from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { logout } from "../../slices/auth";
+import { useDispatch } from "react-redux";
 
 const navigation = [{}];
 
@@ -12,6 +14,19 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const { disconnect } = useDisconnect();
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({});
+
+  const handleLogout = () => {
+    dispatch(logout());
+    disconnect();
+    location.reload();
+  };
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
+
 
   return (
     <Disclosure as="nav">
@@ -21,7 +36,7 @@ export default function Navbar() {
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block w-6 h-6" aria-hidden="true" />
@@ -34,11 +49,11 @@ export default function Navbar() {
                 <div className="flex items-center flex-shrink-0">
                   <img
                     className="block w-auto h-8"
-                    src="/logo.png"
+                    src="/logo_w.png"
                     alt="Workflow"
                   />
-                  <a href="/" className="px-2 text-xl font-bold uppercase">
-                 | Student Portal
+                  <a href="/" className="px-2 text-xl font-bold text-white uppercase">
+                    | Student Portal
                   </a>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -65,7 +80,7 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative mx-3">
                   <div>
-                    <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="flex text-sm text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -82,6 +97,7 @@ export default function Navbar() {
                       </svg>
                     </Menu.Button>
                   </div>
+                  
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"
@@ -93,9 +109,10 @@ export default function Navbar() {
                   >
                     <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
+                
                         {({ active }) => (
                           <button
-                            onClick={() => disconnect()}
+                            onClick={() => handleLogout()}
                             className={classNames(
                               active ? "bg-gray-100 w-full" : "",
                               "block px-4 py-2 text-sm text-gray-700 w-full"

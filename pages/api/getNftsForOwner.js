@@ -2,6 +2,7 @@ import { Network, Alchemy } from "alchemy-sdk";
 
 export default async function handler(req, res) {
   const { address, pageSize, chain, pageKey } = JSON.parse(req.body);
+  console.log("address", address);
   if (req.method !== "POST") {
     res.status(405).send({ message: "Only POST requests allowed" });
     return;
@@ -52,7 +53,7 @@ export default async function handler(req, res) {
       nfts: formattedNfts.length
         ? formattedNfts.filter(
             (nft) =>
-              nft.contract == "0xa4ebc7Da77088e2F2f684C89695F76a3d6Ce0E31"
+              nft.contract == 0xa4ebc7Da77088e2F2f684C89695F76a3d6Ce0E31
           )
         : null,
       pageKey: nfts.pageKey,
